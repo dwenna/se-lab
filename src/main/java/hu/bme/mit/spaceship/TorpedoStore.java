@@ -12,6 +12,7 @@ public class TorpedoStore {
   // rate of failing to fire torpedos [0.0, 1.0]
   private double FAILURE_RATE = 0.0; //NOSONAR
   private int torpedoCount = 0;
+  // globalisan letrehozott random valtozo
   private Random generator = new Random();
 
   public TorpedoStore(int numberOfTorpedos){
@@ -30,6 +31,7 @@ public class TorpedoStore {
 
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
+      // eldobjuk a hibát
       throw new IllegalArgumentException("numberOfTorpedos");
     }
 
@@ -40,6 +42,7 @@ public class TorpedoStore {
 
     if (r >= FAILURE_RATE) {
       // successful firing
+      // counting downwards
       this.torpedoCount -= numberOfTorpedos;
       success = true;
     } else {
